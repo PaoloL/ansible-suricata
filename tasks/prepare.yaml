@@ -1,0 +1,24 @@
+---
+#  Setup Hostname for an Amazon Linux VMs
+- name: Setup Hostname
+  block:
+  - name: Verify that the preserve_hostname cloud-init setting is set to true
+    lineinfile:
+      path: /etc/cloud/cloud.cfg
+      regexp: '^preserve_hostname:'
+      line: "preserve_hostname: true"
+      state: present
+
+  - name: Set a hostname
+    hostname:
+      name: '{{node_name}}'
+
+  - name: Configure /etc/hosts file with localhost
+    lineinfile:
+      path: /etc/hosts
+      regexp: '^127\.0\.0\.1'
+      line: '127.0.0.1 {{node_name}}'
+      owner: root
+      group: root
+      mode: '0644'
+

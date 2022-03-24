@@ -1,0 +1,10 @@
+---
+
+- name: Gather EC2 Metadata Information
+  action: ec2_metadata_facts
+  async: 80
+  poll: 5
+
+- import_tasks: prepare.yaml
+- import_tasks: install.yaml
+- import_tasks: configure.yaml

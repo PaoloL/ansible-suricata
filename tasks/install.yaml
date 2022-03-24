@@ -1,0 +1,11 @@
+---
+# Install EPEL repository
+- name: Install the EPEL release package
+  command: amazon-linux-extras install epel -y
+
+# Install Suricata
+- name: Install Suricata
+  yum:
+    name: suricata
+    state: present
+

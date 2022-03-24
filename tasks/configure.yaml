@@ -1,0 +1,16 @@
+---
+
+# Configure Suricata
+- name: Configure Suricata
+  block:
+  - name: Suricata config
+    template:
+      src: './templates/suricata.yaml.j2'
+      dest: "{{ default_conf_dir }}/suricata.yaml"
+
+- name: Start Suricata Service
+  command: 'systemctl restart suricata'
+  register: command_output
+
+- debug: msg="{{command_output.stdout}}"
+
