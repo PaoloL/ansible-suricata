@@ -8,9 +8,22 @@
       src: './templates/suricata.yaml.j2'
       dest: "{{ default_conf_dir }}/suricata.yaml"
 
-- name: Start Suricata Service
-  command: 'systemctl restart suricata'
-  register: command_output
+# Create a Welcome page
+- name: Copying welcome page
+  copy:
+    src: index.html
+    dest: /var/www/html/
 
-- debug: msg="{{command_output.stdout}}"
+# Start Services
+- name: Starting httpd services
+  service:
+    name: "httpd"
+    state: started
+    enabled: yes
+
+- name: Starting Suricata services
+  service:
+    name: "suricata"
+    state: started
+    enabled: yes
 

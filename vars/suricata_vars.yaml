@@ -1,10 +1,9 @@
 ---
 
 #Suricata Common vars
-node_name: suricata01
 
 #Suricata Configuration file
-home_net: 172.31.16.0/20
+home_net: 172.31.0.0/16
 default_conf_dir: /etc/suricata
 default_log_dir: /var/log/suricata
 

@@ -6,6 +6,13 @@
 # Install Suricata
 - name: Install Suricata
   yum:
-    name: suricata
+    name: "suricata"
     state: present
+
+#Install Apache Web Server
+- name: Install Apache Web Server
+  yum:
+    name: "httpd"
+    state: present
+
 
