@@ -1,0 +1,13 @@
+# ------------------------------------------
+# CONFIGURATION DETAILS
+# ------------------------------------------
+
+[general]
+state_file = /var/lib/awslogs/state/agent-state
+
+[/var/log/suricata/fast.log]
+file = /var/log/suricata/fast.log
+log_group_name = suricata-ids
+log_stream_name = {instance_id}
+datetime_format = %b %d %H:%M:%S
+initial_position = start_of_file

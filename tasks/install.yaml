@@ -9,10 +9,16 @@
     name: "suricata"
     state: present
 
-#Install Apache Web Server
+# Install Apache Web Server
 - name: Install Apache Web Server
   yum:
     name: "httpd"
+    state: present
+
+# Install CloudWatch Log Agent
+- name: Install CloudWatch Log Agent
+  yum:
+    name: awslogs
     state: present
 
 

@@ -1,18 +1,29 @@
 ---
 
 # Configure Suricata
-- name: Configure Suricata
-  block:
-  - name: Suricata config
-    template:
-      src: './templates/suricata.yaml.j2'
-      dest: "{{ default_conf_dir }}/suricata.yaml"
+- name: Suricata config
+  template:
+    src: './templates/suricata.yaml.j2'
+    dest: "{{ suricata_default_conf_dir }}/suricata.yaml"
 
 # Create a Welcome page
 - name: Copying welcome page
   copy:
     src: index.html
     dest: /var/www/html/
+
+# Configure Cloudwatch Logs Agent
+- name: Cloudwatch config
+  template:
+    src: './templates/awslogs.conf.j2'
+    dest: "{{ awslogs_default_conf_dir }}/awslogs.conf"
+
+# Create state dir for Cloudwatch Logs Agent
+- name: Create state dir for Cloudwatch Logs Agent
+  file:
+    path: /var/lib/awslogs/state
+    state: directory
+    mode: '0755'
 
 # Start Services
 - name: Starting httpd services
@@ -24,6 +35,12 @@
 - name: Starting Suricata services
   service:
     name: "suricata"
+    state: started
+    enabled: yes
+
+- name: Starting Cloud Watch Agent
+  service:
+    name: "awslogsd"
     state: started
     enabled: yes
 

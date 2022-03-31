@@ -4,6 +4,9 @@
 
 #Suricata Configuration file
 home_net: 172.31.0.0/16
-default_conf_dir: /etc/suricata
-default_log_dir: /var/log/suricata
+suricata_default_conf_dir: /etc/suricata
+suricata_default_log_dir: /var/log/suricata
+
+#AWS Logs Configuration file
+awslogs_default_conf_dir: /etc/awslogs/
 
